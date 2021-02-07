@@ -75,7 +75,6 @@ deleteTodo = (event, value) =>{
         </head>
       <h1> TODO app </h1>
       <p> Welcome to the TODO app - A react based application created by Saleem Ibrahim </p>
-      <p> Please Hire me :)</p>
 {this.state.showTODOs === true ? 
         <div class = "ui inverted segment" style ={style}> 
       <div> <button class="ui button" onClick= {this.toggle}> Close TODO List </button> </div>
