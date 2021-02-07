@@ -8,7 +8,8 @@ class App extends Component {
         Todos: [
         ],
         showTODOs: false,
-        counter: 0
+        counter: 0,
+        info: ""
         
     
     
@@ -16,19 +17,23 @@ class App extends Component {
 
 
 
-namechangehandler = (event, value) => {
+namechangehandler = (event) => {
     
-    let Todoz = [...this.state.Todos];
+    /*let Todoz = [...this.state.Todos];
     let Todom = {...this.state.Todos[value]}
 
     Todom.name = event.target.value;
     Todom.val = value;
     Todoz[value] = Todom;
     console.log('This is the updated Todoz')
-    this.setState({Todos: Todoz});
+    this.setState({Todos: Todoz});*/
+    this.setState({info: event.target.value});
+    console.log("here")
                   
                       
 }
+
+
 
 toggle = () => {
     const show = this.state.showTODOs;
@@ -39,18 +44,14 @@ create = () => {
     let v = this.state.counter
     v = v+1
     this.setState({
-        Todos: [ ...this.state.Todos,   {name:"Nothing here yet", val:this.state.counter} ],
+        Todos: [ ...this.state.Todos,   {name:this.state.info, val:this.state.counter} ],
         counter :v} )
-    
-
-    console.log(v)
-                                            
-    
-    
+                                                
 }
-deleteTodo = (event, value) =>{
-    const result = this.state.Todos.filter(Todoz => Todoz.val !==value)
+deleteTodo = (value) =>{
+    let result = this.state.Todos.filter(Todoz => !(Todoz.name ===value))
     this.setState({Todos: result});
+    console.log(value)
                   
 } 
 
@@ -76,29 +77,32 @@ deleteTodo = (event, value) =>{
       <h1> TODO app </h1>
       <p> Welcome to the TODO app - A react based application created by Saleem Ibrahim </p>
 {this.state.showTODOs === true ? 
+        
         <div class = "ui inverted segment" style ={style}> 
+        <div class ="ui focus input"> <input type="text" placeholder ="Add a task...." onChange = { this.namechangehandler}/>   
+</div> 
+        <button class ="ui button" onClick = {this.create}> Add task </button>
       <div> <button class="ui button" onClick= {this.toggle}> Close TODO List </button> </div>
       
             {this.state.Todos.map( (item, index)=> 
             <Todo
-            click = {(e) => this.deleteTodo(e, index)}
             name={this.state.Todos[index].name} 
-            changed = { (e) =>  this.namechangehandler(e, index)}
-            key = {index} 
+            key = {this.state.Todos[index].name} 
+            click = {() =>this.deleteTodo(this.state.Todos[index].name)}
+
         /> 
     
             )
             }
 
-<div>
-         <button class="ui button" onClick = {() => this.create(TodoList)}> Create New Card</button>    
-</div>
 
             
             </div> :      
             <div> <button class="ui button" onClick= {this.toggle}> Open TODO List </button> </div>
 
 }
+            
+
 
 
 </div>
@@ -108,3 +112,7 @@ deleteTodo = (event, value) =>{
 
 
 export default App;
+   
+
+
+
