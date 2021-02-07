@@ -57,7 +57,6 @@ deleteTodo = (value) =>{
 
 
   render() {
-     var TodoList = 0
       const style = {
           font: 'inherit',
           border: '1x solid blue',
