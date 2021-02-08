@@ -94,7 +94,6 @@ deleteTodo = (value) =>{
 </div> 
         </div>
         {!(this.state.info ==="") ?  <button class ="ui button" onClick = {this.create} > Add task </button> : null}
-      <div className = "ButtonClose"> <button class="ui button" onClick= {this.toggle}> Close TODO List </button> </div>
         <div class ="grid-container">
       
             {this.state.Todos.map( (item, index)=> 
@@ -105,6 +104,7 @@ deleteTodo = (value) =>{
             )
             }
         </div>
+      <div className = "ButtonClose"> <button class="ui button" onClick= {this.toggle}> Close TODO List </button> </div>
 
 
             

@@ -17,3 +17,10 @@
 {
     color: darkslategray;
 }
+.subs{
+    cursor: pointer;
+    
+}
+.subs:hover{
+    color: mediumblue;
+}
