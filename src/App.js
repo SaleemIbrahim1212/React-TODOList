@@ -24,7 +24,6 @@ namechangehandler = (event) => {
     Todom.name = event.target.value;
     Todom.val = value;
     Todoz[value] = Todom;
-    console.log('This is the updated Todoz')
     this.setState({Todos: Todoz});*/
     this.setState({info: event.target.value});
     return this.state.info;
@@ -35,6 +34,8 @@ namechangehandler = (event) => {
 
 clearstate = () => {
     this.setState({info: ""})
+    document.getElementById('MYINPUT').value = ''
+
 }
 toggle = () => {
     const show = this.state.showTODOs;
@@ -44,17 +45,17 @@ toggle = () => {
 }
 create = () => {
     let result = this.state.Todos.filter(Todo => (Todo.name === this.state.info))
-    console.log(result)
     if ((result.length===0))
     {
         this.setState({
             Todos: [ ...this.state.Todos,   {name:this.state.info} ],
-            info: ""} )
-        document.getElementById('MYINPUT').value = ''
+            } )
+        this.clearstate()
     }
     else {
-        console.log("HERE") 
         alert("Todo task has already been created")
+        this.clearstate()
+        
     }
     
     
@@ -63,7 +64,6 @@ create = () => {
 deleteTodo = (value) =>{
     let result = this.state.Todos.filter(Todoz => !(Todoz.name ===value))
     this.setState({Todos: result});
-    console.log(value)
                   
 } 
 
