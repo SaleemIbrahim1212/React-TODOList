@@ -81,14 +81,9 @@ deleteTodo = (value) =>{
     return(
 
     <div className="App">
-        <head> <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/> 
-        </head>
-    <body>
-        
-      <h1> TODO app </h1>
-      <p> Welcome to the TODO app - A react based application created by Saleem Ibrahim </p>
+    <head> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/> </head>        
+    <p class = "ui huge header"> TODO app </p>
+    <p> Welcome to the TODO app - A react based application created by Saleem Ibrahim </p>
 {this.state.showTODOs === true ? 
         
         <div class = "ui inverted segment" style ={style}> 
@@ -96,18 +91,16 @@ deleteTodo = (value) =>{
 </div> 
         {!(this.state.info ==="") ?  <button class ="ui button" onClick = {this.create} > Add task </button> : null}
       <div className = "ButtonClose"> <button class="ui button" onClick= {this.toggle}> Close TODO List </button> </div>
+        <div class ="grid-container">
       
             {this.state.Todos.map( (item, index)=> 
             <Todo
             name={this.state.Todos[index].name} 
             key = {this.state.Todos[index].name} 
-            click = {() =>this.deleteTodo(this.state.Todos[index].name)
-             }
-
-        /> 
-    
+            click = {() =>this.deleteTodo(this.state.Todos[index].name)}/> 
             )
             }
+        </div>
 
 
             
@@ -117,7 +110,6 @@ deleteTodo = (value) =>{
 }
             
 
-</body>
 
 </div>
   )
