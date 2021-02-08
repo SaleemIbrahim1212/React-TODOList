@@ -44,6 +44,8 @@ toggle = () => {
     
 }
 create = () => {
+    let audio = new Audio("sounds.mp3")
+    console.log(audio)
     let result = this.state.Todos.filter(Todo => (Todo.name === this.state.info))
     if ((result.length===0))
     {
@@ -51,6 +53,7 @@ create = () => {
             Todos: [ ...this.state.Todos,   {name:this.state.info} ],
             } )
         this.clearstate()
+       audio.play();
     }
     else {
         alert("Todo task has already been created")
@@ -85,10 +88,11 @@ deleteTodo = (value) =>{
     <p class = "ui huge header"> TODO app </p>
     <p> Welcome to the TODO app - A react based application created by Saleem Ibrahim </p>
 {this.state.showTODOs === true ? 
-        
+        <div className = "setcolor">
         <div class = "ui inverted segment" style ={style}> 
         <div class ="ui focus input"> <input type="text" placeholder ="Add a task..." id ="MYINPUT" onChange = { this.namechangehandler}/>   
 </div> 
+        </div>
         {!(this.state.info ==="") ?  <button class ="ui button" onClick = {this.create} > Add task </button> : null}
       <div className = "ButtonClose"> <button class="ui button" onClick= {this.toggle}> Close TODO List </button> </div>
         <div class ="grid-container">

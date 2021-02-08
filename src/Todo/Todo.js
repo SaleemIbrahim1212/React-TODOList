@@ -10,7 +10,7 @@ const todo = (props)=> {
                 <div class ="description">
                     <p color = "black"> {props.name} </p>
                     <p color ="black"> {props.children}</p>
-                    <sub color="blue" onClick = {props.click}> Click to delete</sub>
+                    <sub className="subs" onClick = {props.click}> Click to delete</sub>
                 </div> 
             </div>
         
