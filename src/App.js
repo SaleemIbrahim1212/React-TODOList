@@ -95,7 +95,7 @@ deleteTodo = (value) =>{
         <div class ="ui focus input"> <input type="text" placeholder ="Add a task..." id ="MYINPUT" onChange = { this.namechangehandler}/>   
 </div> 
         {!(this.state.info ==="") ?  <button class ="ui button" onClick = {this.create} > Add task </button> : null}
-      <div> <button class="ui button" onClick= {this.toggle}> Close TODO List </button> </div>
+      <div className = "ButtonClose"> <button class="ui button" onClick= {this.toggle}> Close TODO List </button> </div>
       
             {this.state.Todos.map( (item, index)=> 
             <Todo
