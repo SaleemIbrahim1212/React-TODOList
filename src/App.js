@@ -9,7 +9,7 @@ class App extends Component {
         ],
         showTODOs: false,
         counter: 0,
-        info: ""
+        info: "",
         
     
     
@@ -28,16 +28,19 @@ namechangehandler = (event) => {
     console.log('This is the updated Todoz')
     this.setState({Todos: Todoz});*/
     this.setState({info: event.target.value});
-    console.log("here")
+    return this.state.info;
                   
                       
 }
 
 
-
+clearstate = () => {
+    this.setState({info: ""})
+}
 toggle = () => {
     const show = this.state.showTODOs;
     this.setState({showTODOs: !show});
+    this.setState({info: ""})
     
 }
 create = () => {
@@ -45,7 +48,11 @@ create = () => {
     v = v+1
     this.setState({
         Todos: [ ...this.state.Todos,   {name:this.state.info, val:this.state.counter} ],
-        counter :v} )
+        counter :v,
+        info: ""} )
+    document.getElementById('MYINPUT').value = ''
+    
+    
                                                 
 }
 deleteTodo = (value) =>{
@@ -73,21 +80,24 @@ deleteTodo = (value) =>{
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/> 
         </head>
+    <body>
+        
       <h1> TODO app </h1>
       <p> Welcome to the TODO app - A react based application created by Saleem Ibrahim </p>
 {this.state.showTODOs === true ? 
         
         <div class = "ui inverted segment" style ={style}> 
-        <div class ="ui focus input"> <input type="text" placeholder ="Add a task...." onChange = { this.namechangehandler}/>   
+        <div class ="ui focus input"> <input type="text" placeholder ="Add a task..." id ="MYINPUT" onChange = { this.namechangehandler}/>   
 </div> 
-        <button class ="ui button" onClick = {this.create}> Add task </button>
+        <button class ="ui button" onClick = {this.create} > Add task </button>
       <div> <button class="ui button" onClick= {this.toggle}> Close TODO List </button> </div>
       
             {this.state.Todos.map( (item, index)=> 
             <Todo
             name={this.state.Todos[index].name} 
             key = {this.state.Todos[index].name} 
-            click = {() =>this.deleteTodo(this.state.Todos[index].name)}
+            click = {() =>this.deleteTodo(this.state.Todos[index].name)
+             }
 
         /> 
     
@@ -97,12 +107,12 @@ deleteTodo = (value) =>{
 
             
             </div> :      
-            <div> <button class="ui button" onClick= {this.toggle}> Open TODO List </button> </div>
+            <div> <button class="ui button" onClick= {this.toggle}> Open TODO List </button>  </div> 
 
 }
             
 
-
+</body>
 
 </div>
   )

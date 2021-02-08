@@ -6,6 +6,7 @@ const todo = (props)=> {
         <p>TODO task: {props.name} </p>
         <p> {props.children}</p>
         <sub onClick = {props.click}> Click to delete</sub>
+        
         </div> 
     
     
