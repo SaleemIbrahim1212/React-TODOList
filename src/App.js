@@ -8,7 +8,6 @@ class App extends Component {
         Todos: [
         ],
         showTODOs: false,
-        counter: 0,
         info: "",
         
     
@@ -44,13 +43,19 @@ toggle = () => {
     
 }
 create = () => {
-    let v = this.state.counter
-    v = v+1
-    this.setState({
-        Todos: [ ...this.state.Todos,   {name:this.state.info, val:this.state.counter} ],
-        counter :v,
-        info: ""} )
-    document.getElementById('MYINPUT').value = ''
+    let result = this.state.Todos.filter(Todo => (Todo.name === this.state.info))
+    console.log(result)
+    if ((result.length===0))
+    {
+        this.setState({
+            Todos: [ ...this.state.Todos,   {name:this.state.info} ],
+            info: ""} )
+        document.getElementById('MYINPUT').value = ''
+    }
+    else {
+        console.log("HERE") 
+        alert("Todo task has already been created")
+    }
     
     
                                                 
@@ -89,7 +94,7 @@ deleteTodo = (value) =>{
         <div class = "ui inverted segment" style ={style}> 
         <div class ="ui focus input"> <input type="text" placeholder ="Add a task..." id ="MYINPUT" onChange = { this.namechangehandler}/>   
 </div> 
-        <button class ="ui button" onClick = {this.create} > Add task </button>
+        {!(this.state.info ==="") ?  <button class ="ui button" onClick = {this.create} > Add task </button> : null}
       <div> <button class="ui button" onClick= {this.toggle}> Close TODO List </button> </div>
       
             {this.state.Todos.map( (item, index)=> 
